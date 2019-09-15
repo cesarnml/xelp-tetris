@@ -77,6 +77,7 @@ export const Tetris = () => {
       // game over
       if (player.pos.y < 1) {
         setGameOver(true)
+        handleAudio()
         setOn(false)
         setDropTime(null)
       }
