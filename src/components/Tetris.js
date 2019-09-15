@@ -53,12 +53,18 @@ export const Tetris = () => {
   }
 
   const movePlayer = dir => {
+    if (isPaused) {
+      return
+    }
     if (!checkCollision(player, stage, { x: dir, y: 0 })) {
       updatePlayerPos({ x: dir, y: 0 })
     }
   }
 
   const drop = () => {
+    if (isPaused) {
+      return
+    }
     // increase level when player has cleared 10 rows
     if (rows > (level + 1) * 10) {
       setLevel(prev => prev + 1)
@@ -79,6 +85,9 @@ export const Tetris = () => {
   }
 
   const keyUp = ({ keyCode }) => {
+    if (isPaused) {
+      return
+    }
     if (!gameOver) {
       if (keyCode === 40) {
         setDropTime(1000 / (level + 1) + 200)
@@ -92,6 +101,9 @@ export const Tetris = () => {
   }
 
   const move = ({ keyCode }) => {
+    if (isPaused) {
+      return
+    }
     if (!gameOver) {
       if (keyCode === 37) {
         movePlayer(-1)
