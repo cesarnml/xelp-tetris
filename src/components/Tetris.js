@@ -1,10 +1,10 @@
 import React, { useState } from 'react'
 import { Stage, Display, StartButton } from 'components'
 import { createStage, checkCollision } from 'utils'
-import { StyledTetrisWrapper, StyledTetris } from 'styles'
-import { usePlayer, useStage, useGameStatus, useInterval } from 'hooks'
 import styled from 'styled-components'
+import { usePlayer, useStage, useGameStatus, useInterval } from 'hooks'
 import tetris from 'assets/audio/tetris.ogg'
+import bgImage from 'assets/images/bg.png'
 const audio = new Audio(tetris)
 
 export const Tetris = () => {
@@ -44,6 +44,7 @@ export const Tetris = () => {
     // reset everything
     setStage(createStage())
     setDropTime(1000)
+    setOn(true)
     resetPlayer()
     setGameOver(false)
     setScore(0)
@@ -143,7 +144,7 @@ export const Tetris = () => {
           )}
           <StartButton
             callback={startGame}
-            text={isOn ? 'Stop Game' : 'Start Game'}
+            text={isOn ? 'Reset Game' : 'Start Game'}
           />
           <StartButton
             callback={handlePause}
@@ -155,7 +156,25 @@ export const Tetris = () => {
   )
 }
 
-const Button = styled.button`
-  width: 40px;
-  height: 30px;
+const StyledTetrisWrapper = styled.div`
+  width: 100vw;
+  height: 100vh;
+  background: url(${bgImage}) #000;
+  background-size: cover;
+  overflow: hidden;
+`
+
+const StyledTetris = styled.div`
+  display: flex;
+  align-items: flex-start;
+  padding: 40px;
+  margin: 0 auto;
+  max-width: 900px;
+
+  aside {
+    width: 100%;
+    max-width: 200px;
+    display: block;
+    padding: 0 20px;
+  }
 `
