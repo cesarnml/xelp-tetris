@@ -9,6 +9,7 @@ const audio = new Audio(tetris)
 
 export const Tetris = () => {
   const [dropTime, setDropTime] = useState(null)
+  const [isOn, setOn] = useState(false)
   const [gameOver, setGameOver] = useState(false)
   const [gameAudio, setAudio] = useState(false)
   const [isPaused, setPaused] = useState(false)
@@ -31,7 +32,9 @@ export const Tetris = () => {
   const handlePause = () => {
     if (isPaused) {
       setDropTime(1000)
+      handleAudio()
     } else {
+      handleAudio()
       setDropTime(null)
     }
     setPaused(prev => !prev)
@@ -46,6 +49,7 @@ export const Tetris = () => {
     setScore(0)
     setRows(0)
     setLevel(0)
+    handleAudio()
   }
 
   const movePlayer = dir => {
@@ -67,6 +71,7 @@ export const Tetris = () => {
       // game over
       if (player.pos.y < 1) {
         setGameOver(true)
+        setOn(false)
         setDropTime(null)
       }
       updatePlayerPos({ x: 0, y: 0, collided: true })
@@ -121,12 +126,16 @@ export const Tetris = () => {
               <Display text={`Score: ${score}`} />
               <Display text={`Rows: ${rows}`} />
               <Display text={`Level: ${level}`} />
-              <Button onClick={handleAudio}>Play Audio</Button>
-              <Button onClick={handlePause}>Pause Game</Button>
             </div>
           )}
-
-          <StartButton callback={startGame} />
+          <StartButton
+            callback={startGame}
+            text={isOn ? 'Stop Game' : 'Start Game'}
+          />
+          <StartButton
+            callback={handlePause}
+            text={isPaused ? 'Unpause Game' : 'Pause Game'}
+          />
         </aside>
       </StyledTetris>
     </StyledTetrisWrapper>
