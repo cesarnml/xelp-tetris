@@ -3,5 +3,13 @@
     "activityBar.background": "#4C1B3C",
     "titleBar.activeBackground": "#6B2654",
     "titleBar.activeForeground": "#FDF8FB"
-  }
+  },
+  "cSpell.words": [
+    "ijlostz",
+    "nums, crossorigin",
+    "rand",
+    "tetris",
+    "tetromino",
+    "tetrominos"
+  ]
 }

@@ -1,0 +1,6 @@
+export * from './StyledCell'
+export * from './StyledTetris'
+export * from './StyledStage'
+export * from './StyledDisplay'
+export * from './StyledStartButton'
+export * from './StyledGameOver'
